@@ -1,0 +1,149 @@
+/* Basic CSS for centering and styling */
+body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://plus.unsplash.com/premium_photo-1673859054724-d3ce699da39d?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c25vd3klMjBtb3VudGFpbnxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    scroll-behavior: smooth;
+    background-attachment: fixed;
+}
+
+/* Overlay to darken the background and ensure content is visible */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: -1; /* To make sure content is above */
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 2px solid #00e5ff;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #00e5ff;
+    text-transform: uppercase;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 12px 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+nav ul li a:hover {
+    background-color: #00e5ff;
+    color: #111;
+    transform: scale(1.1);
+}
+
+main {
+    padding: 80px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+section {
+    margin: 40px 0;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+section:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00e5ff;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.team-member {
+    margin: 20px;
+    display: inline-block;
+    width: 250px;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.team-member h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00e5ff;
+}
+
+footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* Animation for smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
