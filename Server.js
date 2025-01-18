@@ -90,4 +90,59 @@ document.getElementById("contactForm").addEventListener("submit", async function
         console.error("Error sending message:", error);
         alert("Error sending message. Please try again.");
     }
+
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    // Sauvegarde du message dans Firestore
+    await db.collection("messages").add({
+        name: name,
+        email: email,
+        message: message
+    });
+
+    // Confirmation dans la console
+    console.log("Message envoyé avec succès");
+
+    // Réinitialiser le formulaire
+    document.getElementById("contactForm").reset();
+    alert("Message envoyé avec succès!");
+});
+    async function fetchMessages() {
+    const messagesContainer = document.getElementById("messagesContainer");
+    const querySnapshot = await db.collection("messages").get();
+    
+    querySnapshot.forEach(doc => {
+        const messageData = doc.data();
+        const messageElement = document.createElement("div");
+        messageElement.innerHTML = `
+            <p><strong>${messageData.name}</strong>: ${messageData.message}</p>
+            <button class="delete-btn" onclick="deleteMessage('${doc.id}')">Delete</button>
+        `;
+        messagesContainer.appendChild(messageElement);
+    });
+}
+async function fetchMessages() {
+    const messagesContainer = document.getElementById("messagesContainer");
+    const querySnapshot = await db.collection("messages").get();
+    console.log("Messages récupérés:", querySnapshot.docs.length); // Affiche le nombre de messages
+
+    querySnapshot.forEach(doc => {
+        const messageData = doc.data();
+        const messageElement = document.createElement("div");
+        messageElement.innerHTML = `
+            <p><strong>${messageData.name}</strong>: ${messageData.message}</p>
+            <button class="delete-btn" onclick="deleteMessage('${doc.id}')">Delete</button>
+        `;
+        messagesContainer.appendChild(messageElement);
+    });
+}
+
+
+
+
 });
