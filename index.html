@@ -6,7 +6,7 @@
     <meta name="description" content="Avalanche.gg - Valorant community and esports">
     <title>Avalanche.gg - Valorant</title>
     <style>
-        /* CSS reste inchangé */
+        /* CSS remains unchanged */
         body {
             font-family: 'Orbitron', sans-serif;
             margin: 0;
@@ -364,7 +364,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Password Form and Contact Form -->
+    <!-- JavaScript for Password Form, Contact Form, and IP Address Logging -->
     <script>
         // Load stored messages from localStorage if available
         var messages = JSON.parse(localStorage.getItem('messages')) || [];
@@ -385,15 +385,30 @@
             }
         }
 
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Function to get the user's IP address using a third-party service
+        async function getIpAddress() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+                return 'Unknown';
+            }
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
             
-            // Add the message to the messages array
-            messages.push({ name: name, email: email, message: message });
+            // Get the user's IP address
+            var ip = await getIpAddress();
+            
+            // Add the message with IP to the messages array
+            messages.push({ name: name, email: email, message: message, ip: ip });
             
             // Save the messages in localStorage
             localStorage.setItem('messages', JSON.stringify(messages));
@@ -421,6 +436,7 @@
                     <p><strong>Name:</strong> ${message.name}</p>
                     <p><strong>Email:</strong> ${message.email}</p>
                     <p><strong>Message:</strong> ${message.message}</p>
+                    <p><strong>IP Address:</strong> ${message.ip}</p>
                     <button class="delete-btn" onclick="deleteMessage(${index})">Delete</button>
                     <hr>
                 `;
@@ -441,4 +457,3 @@
     </script>
 </body>
 </html>
-
