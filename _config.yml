@@ -1,67 +1,75 @@
 # Site settings
-title: Avalanche.gg - Valorant
-description: "Avalanche.gg - A competitive Valorant community and esports team focused on North America."
-url: "https://www.avalanche.gg" # Base URL of your website
+title: Avalanche.gg
+description: 'Avalanche.gg - Valorant community and esports'
+url: 'https://avalanche.gg'  # The base URL for the site
+baseurl: ''                # Base URL for your site, can be used if your site is hosted in a subfolder
+author: 'Avalanche.gg Team'
+email: 'contact@avalanche.gg'
 
-# Social Media Links
-social_links:
-  twitter: "https://x.com/avalancheggoff"
-  instagram: "https://www.instagram.com/avalanche.ggofficial?igsh=ZjM3YjE4cnhjYzVu"
-  tiktok: "https://www.tiktok.com/@avalancheggofficial"
+# Social media links
+social:
+  twitter: 'https://x.com/avalancheggoff'
+  instagram: 'https://www.instagram.com/avalanche.ggofficial'
+  tiktok: 'https://www.tiktok.com/@avalancheggofficial'
 
-# Navigation settings
-navigation:
-  - home: "/#home"
-  - about: "/#about"
-  - roster: "/#roster"
-  - events: "/#events"
-  - join: "/#join"
-  - contact: "/#contact"
-  - admin: "/#admin"
+# Google Analytics ID (optional)
+google_analytics: 'UA-XXXXX-Y'
 
-# Theme and Design settings (If you are using a Jekyll theme)
+# Site-specific settings (e.g., theme, styling, etc.)
 theme: "minimal"
-
-# Google Analytics (optional)
-google_analytics: "UA-XXXXXXXXX-X"
 
 # Markdown settings
 markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-
-# Assets and Files
-assets:
-  - "/assets/css/style.css"  # Link to your main CSS file
-  - "/assets/js/script.js"   # Link to your main JS file
-
-# Plugins (For Jekyll usage)
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-
-# Permalink structure (optional, if using permalinks for pages)
-permalink: /:title/
-
-# Disqus Settings (optional)
-disqus_shortname: "avalanchegg"
-
-# Site Locale (optional)
-locale: en_US
+highlighter: rouge
 
 # Build settings
-build:
-  incremental: true
-  future: false
-  safe: false
-  exclude:
-    - "*.md"   # Exclude markdown files from being processed
-
-# URL Handling for Content Pages
 exclude:
-  - "README.md"
-  - "LICENSE.md"
+  - README.md
+
+# Permalinks configuration
+permalink: '/:year/:month/:day/:title/'
+
+# Default layout
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Settings related to the website layout
+navbar:
+  home: "#home"
+  about: "#about"
+  roster: "#roster"
+  events: "#events"
+  join: "#join"
+  contact: "#contact"
+
+# Custom settings for handling admin access or forms
+admin_password: "846972"  # The password used in your JS script to view the admin section
+messages_local_storage_key: "messages"
+
+# SEO settings
+seo:
+  meta_tags:
+    - property: "og:title"
+      content: "Avalanche.gg - Valorant"
+    - property: "og:description"
+      content: "Join Avalanche.gg - the premier Valorant esports team!"
+    - property: "og:image"
+      content: "URL_of_your_image"
+    - property: "og:url"
+      content: "https://avalanche.gg"
+  twitter_card:
+    - name: "twitter:card"
+      content: "summary_large_image"
+    - name: "twitter:site"
+      content: "@avalanchegg"
+
+# Google Tag Manager (optional, if applicable)
+google_tag_manager: 'GTM-XXXX'
+v
 
 # Custom settings for special pages
 contact_email: "contact@avalanche.gg"
