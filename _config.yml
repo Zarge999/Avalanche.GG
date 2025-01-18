@@ -1,33 +1,30 @@
 firebase:
-"firebase/app";
-"firebase/analytics";
-
-  apiKey: "AIzaSyA9IaJUs4KAV3IbcapUdBjKn-57hQ4gPpo",
-  authDomain: "avalanche-b78c6.firebaseapp.com",
-  projectId: "avalanche-b78c6",
-  storageBucket: "avalanche-b78c6.firebasestorage.app",
-  messagingSenderId: "806793807458",
-  appId: "1:806793807458:web:67c5655465f7f6facb733b",
+  apiKey: "AIzaSyA9IaJUs4KAV3IbcapUdBjKn-57hQ4gPpo"
+  authDomain: "avalanche-b78c6.firebaseapp.com"
+  projectId: "avalanche-b78c6"
+  storageBucket: "avalanche-b78c6.firebasestorage.app"
+  messagingSenderId: "806793807458"
+  appId: "1:806793807458:web:67c5655465f7f6facb733b"
   measurementId: "G-KK5GCBWLLB"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+# Initialize Firebase
+firebase_initialization: 
+  - import: "firebase/app"
+  - import: "firebase/analytics"
 
 # Google Analytics ID (optional)
 google_analytics: 'UA-XXXXX-Y'
 
 # Markdown settings
-markdown: kramdown
-highlighter: rouge
+markdown: "kramdown"
+highlighter: "rouge"
 
 # Build settings
 exclude:
-  - README.md
+  - "README.md"
 
 # Permalinks configuration
-permalink: '/:year/:month/:day/:title/'
+permalink: "/:year/:month/:day/:title/"
 
 # Default layout
 defaults:
@@ -37,7 +34,7 @@ defaults:
     values:
       layout: "post"
 
-# Settings related to the website layout
+# Navbar settings
 navbar:
   home: "#home"
   about: "#about"
@@ -46,7 +43,7 @@ navbar:
   join: "#join"
   contact: "#contact"
 
-# Custom settings for handling admin access or forms
+# Admin settings
 admin_password: "846972"  # The password used in your JS script to view the admin section
 messages_local_storage_key: "messages"
 
@@ -69,6 +66,9 @@ seo:
 
 # Google Tag Manager (optional, if applicable)
 google_tag_manager: 'GTM-XXXX'
+
+# Contact settings
+contact_email: "contact@avalanche.gg"
 
 # Custom settings for special pages
 contact_email: "contact@avalanche.gg"
