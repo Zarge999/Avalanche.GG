@@ -4,7 +4,21 @@ description: "Avalanche.gg is a competitive esports team focused on Valorant, re
 url: "https://www.avalanche.gg"
 baseurl: "/"  # For a sub-directory setup, specify it here
 author: "Avalanche.gg Team"
+# _config.yml
+title: Avalanche.gg - Valorant
+description: Avalanche.gg - A competitive Valorant esports community.
+url: "https://yourdomain.com"  # Replace with your actual domain
+baseurl: ""  # Base URL of the site (leave empty for local testing)
+author:
+  name: "Avalanche.gg"
+  email: "contact@avalanche.gg"  # Optional
 
+# Social Media Links
+# Site Settings
+title: "Avalanche.gg - Valorant"
+description: "Avalanche.gg - Valorant community and esports"
+url: "https://www.avalanche.gg"
+baseurl: ""  # Adjust if you are using a subdirectory
 # Navigation Links
 nav:
   - title: "Home"
@@ -21,7 +35,6 @@ nav:
     url: "/#contact"
   - title: "Admin Only"
     url: "/#admin"
-    
 # Social Links
 social:
   tiktok: "https://www.tiktok.com/@avalancheggofficial"
