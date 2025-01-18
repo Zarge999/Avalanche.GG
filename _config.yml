@@ -69,7 +69,6 @@ seo:
 
 # Google Tag Manager (optional, if applicable)
 google_tag_manager: 'GTM-XXXX'
-v
 
 # Custom settings for special pages
 contact_email: "contact@avalanche.gg"
