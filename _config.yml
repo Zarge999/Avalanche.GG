@@ -1,29 +1,80 @@
 firebase:
-  apiKey: "YOUR_API_KEY"
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com"
-  projectId: "YOUR_PROJECT_ID"
-  storageBucket: "YOUR_PROJECT_ID.appspot.com"
-  messagingSenderId: "YOUR_SENDER_ID"
-  appId: "YOUR_APP_ID"
-  measurementId: "YOUR_MEASUREMENT_ID"  # Optional
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-admin:
-  password: "admin123"  # Change the password for admin access
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA9IaJUs4KAV3IbcapUdBjKn-57hQ4gPpo",
+  authDomain: "avalanche-b78c6.firebaseapp.com",
+  projectId: "avalanche-b78c6",
+  storageBucket: "avalanche-b78c6.firebasestorage.app",
+  messagingSenderId: "806793807458",
+  appId: "1:806793807458:web:67c5655465f7f6facb733b",
+  measurementId: "G-KK5GCBWLLB"
+};
 
-contact_form:
-  thank_you_message: "Thank you for your message! We'll get back to you soon." # Custom thank you message after form submission
-  email_notifications:
-    enabled: true
-    email: "admin@yourdomain.com"  # Where notifications are sent for new messages
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-social_links:
-  tiktok: "https://www.tiktok.com/@avalancheggofficial"
-  twitter: "https://x.com/avalancheggoff"
-  instagram: "https://www.instagram.com/avalanche.ggofficial?igsh=ZjM3YjE4cnhjYzVu"
+# Google Analytics ID (optional)
+google_analytics: 'UA-XXXXX-Y'
 
-discord_invite: "https://discord.gg/q84K2USD"  # Discord invite link for users to join
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
 
-website:
-  title: "Avalanche.gg - Valorant"
-  description: "Avalanche.gg is a competitive esports team focused on Valorant, bringing the best players together!"
-  footer_text: "&copy; 2025 Avalanche.gg. All rights reserved."
+# Build settings
+exclude:
+  - README.md
+
+# Permalinks configuration
+permalink: '/:year/:month/:day/:title/'
+
+# Default layout
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Settings related to the website layout
+navbar:
+  home: "#home"
+  about: "#about"
+  roster: "#roster"
+  events: "#events"
+  join: "#join"
+  contact: "#contact"
+
+# Custom settings for handling admin access or forms
+admin_password: "846972"  # The password used in your JS script to view the admin section
+messages_local_storage_key: "messages"
+
+# SEO settings
+seo:
+  meta_tags:
+    - property: "og:title"
+      content: "Avalanche.gg - Valorant"
+    - property: "og:description"
+      content: "Join Avalanche.gg - the premier Valorant esports team!"
+    - property: "og:image"
+      content: "URL_of_your_image"
+    - property: "og:url"
+      content: "https://avalanche.gg"
+  twitter_card:
+    - name: "twitter:card"
+      content: "summary_large_image"
+    - name: "twitter:site"
+      content: "@avalanchegg"
+
+# Google Tag Manager (optional, if applicable)
+google_tag_manager: 'GTM-XXXX'
+
+# Custom settings for special pages
+contact_email: "contact@avalanche.gg"
