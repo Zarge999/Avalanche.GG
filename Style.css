@@ -1,4 +1,5 @@
-/* Global styles */
+/* style.css */
+
 body {
     font-family: 'Orbitron', sans-serif;
     margin: 0;
@@ -197,7 +198,7 @@ html {
 }
 
 .password-form {
-    display: none; /* Hidden by default */
+    display: none;
     margin-top: 20px;
 }
 
@@ -208,7 +209,7 @@ html {
 }
 
 .messages-section {
-    display: none; /* Hidden by default */
+    display: none;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
