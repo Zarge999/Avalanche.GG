@@ -1,62 +1,65 @@
+// server.js
+
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const path = require('path');
+const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
 
+// Initialize Firebase Admin SDK
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+    databaseURL: "https://your-project-id.firebaseio.com"  // Replace with your Firebase database URL
+});
+
+const db = admin.firestore();
+
+// Create an Express app
 const app = express();
-const port = 5000;
+const port = 3000;
 
-// MongoDB setup
-mongoose.connect('mongodb://localhost:27017/avalanche_gg', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-// Message schema
-const messageSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    message: String,
-    ip: String,
-});
-
-const Message = mongoose.model('Message', messageSchema);
-
-app.use(cors());
+// Middleware for parsing application/json
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Get all messages
+// Serve static files (HTML, CSS, JS, etc.)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route to get messages from Firestore (admin access only)
 app.get('/api/messages', async (req, res) => {
     try {
-        const messages = await Message.find();
+        const messagesSnapshot = await db.collection('messages').get();
+        const messages = [];
+        messagesSnapshot.forEach(doc => {
+            messages.push(doc.data());
+        });
         res.json(messages);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to retrieve messages' });
+        res.status(500).send('Error fetching messages: ' + error.message);
     }
 });
 
-// Post a new message
+// Route to handle form submissions (contact form)
 app.post('/api/messages', async (req, res) => {
-    const { name, email, message, ip } = req.body;
-    const newMessage = new Message({ name, email, message, ip });
+    const { name, email, message } = req.body;
     try {
-        await newMessage.save();
-        res.status(201).json(newMessage);
+        await db.collection('messages').add({
+            name,
+            email,
+            message,
+            timestamp: admin.firestore.FieldValue.serverTimestamp()
+        });
+        res.status(200).send('Message sent successfully!');
     } catch (error) {
-        res.status(500).json({ error: 'Failed to save message' });
+        res.status(500).send('Error saving message: ' + error.message);
     }
 });
 
-// Delete a message
-app.delete('/api/messages/:id', async (req, res) => {
-    try {
-        await Message.findByIdAndDelete(req.params.id);
-        res.status(200).send('Message deleted');
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to delete message' });
-    }
+// Route for the home page (optional, but good practice)
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Start the server
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
