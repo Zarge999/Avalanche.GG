@@ -1,84 +1,67 @@
 # Site settings
-title: "Avalanche.gg"
-description: "Avalanche.gg is a competitive esports team focused on Valorant, representing North America at the highest level."
-url: "https://www.avalanche.gg"
-baseurl: "/"  # For a sub-directory setup, specify it here
-author: "Avalanche.gg Team"
-# _config.yml
 title: Avalanche.gg - Valorant
-description: Avalanche.gg - A competitive Valorant esports community.
-url: "https://yourdomain.com"  # Replace with your actual domain
-baseurl: ""  # Base URL of the site (leave empty for local testing)
-author:
-  name: "Avalanche.gg"
-  email: "contact@avalanche.gg"  # Optional
+description: "Avalanche.gg - A competitive Valorant community and esports team focused on North America."
+url: "https://www.avalanche.gg" # Base URL of your website
 
 # Social Media Links
-# Site Settings
-title: "Avalanche.gg - Valorant"
-description: "Avalanche.gg - Valorant community and esports"
-url: "https://www.avalanche.gg"
-baseurl: ""  # Adjust if you are using a subdirectory
-# Navigation Links
-nav:
-  - title: "Home"
-    url: "/#home"
-  - title: "About Us"
-    url: "/#about"
-  - title: "Our Roster"
-    url: "/#roster"
-  - title: "Upcoming Events"
-    url: "/#events"
-  - title: "Join Us"
-    url: "/#join"
-  - title: "Contact"
-    url: "/#contact"
-  - title: "Admin Only"
-    url: "/#admin"
-# Social Links
-social:
-  tiktok: "https://www.tiktok.com/@avalancheggofficial"
+social_links:
   twitter: "https://x.com/avalancheggoff"
   instagram: "https://www.instagram.com/avalanche.ggofficial?igsh=ZjM3YjE4cnhjYzVu"
   tiktok: "https://www.tiktok.com/@avalancheggofficial"
 
-# Google Analytics ID (if available)
-google_analytics: "UA-XXXXX-X"
-# Navigation menu items
-menu:
-  - name: "Home"
-    link: "/"
-  - name: "About Us"
-    link: "/#about"
-  - name: "Our Roster"
-    link: "/#roster"
-  - name: "Upcoming Events"
-    link: "/#events"
-  - name: "Join Us"
-    link: "/#join"
-  - name: "Contact"
-    link: "/#contact"
-# Site logo or favicon path (Optional)
-logo: "/assets/images/logo.png"
-# Footer information
-# Footer Settings
-footer:
-  text: "&copy; 2025 Avalanche.gg. All rights reserved."
-# Disqus Configuration for comments (if using)
-disqus:
-  shortname: "avalanchegg"
-# Pagination settings (Optional)
-pagination:
-  enabled: true
-  per_page: 10
-# Optional Google Fonts
-fonts:
-  primary: "Orbitron, sans-serif"
-  secondary: "Arial, sans-serif"
-# Markdown settings (Optional)
+# Navigation settings
+navigation:
+  - home: "/#home"
+  - about: "/#about"
+  - roster: "/#roster"
+  - events: "/#events"
+  - join: "/#join"
+  - contact: "/#contact"
+  - admin: "/#admin"
+
+# Theme and Design settings (If you are using a Jekyll theme)
+theme: "minimal"
+
+# Google Analytics (optional)
+google_analytics: "UA-XXXXXXXXX-X"
+
+# Markdown settings
 markdown: kramdown
-theme: "minimal"  # Optional: can be customized if you're using a theme for Jekyll
-markdown: kramdown  # Markdown engine used by 
-  text: "© 2025 Avalanche.gg. All rights reserved."
-# Admin Settings (for password protection)
-admin_password: "846972"
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Assets and Files
+assets:
+  - "/assets/css/style.css"  # Link to your main CSS file
+  - "/assets/js/script.js"   # Link to your main JS file
+
+# Plugins (For Jekyll usage)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Permalink structure (optional, if using permalinks for pages)
+permalink: /:title/
+
+# Disqus Settings (optional)
+disqus_shortname: "avalanchegg"
+
+# Site Locale (optional)
+locale: en_US
+
+# Build settings
+build:
+  incremental: true
+  future: false
+  safe: false
+  exclude:
+    - "*.md"   # Exclude markdown files from being processed
+
+# URL Handling for Content Pages
+exclude:
+  - "README.md"
+  - "LICENSE.md"
+
+# Custom settings for special pages
+contact_email: "contact@avalanche.gg"
