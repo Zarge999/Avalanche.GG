@@ -15,9 +15,6 @@ social:
 # Google Analytics ID (optional)
 google_analytics: 'UA-XXXXX-Y'
 
-# Site-specific settings (e.g., theme, styling, etc.)
-theme: "minimal"
-
 # Markdown settings
 markdown: kramdown
 highlighter: rouge
