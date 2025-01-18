@@ -1,65 +1,93 @@
-// server.js
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA9IaJUs4KAV3IbcapUdBjKn-57hQ4gPpo",
+    authDomain: "avalanche-b78c6.firebaseapp.com",
+    projectId: "avalanche-b78c6",
+    storageBucket: "avalanche-b78c6.firebasestorage.app",
+    messagingSenderId: "806793807458",
+    appId: "1:806793807458:web:67c5655465f7f6facb733b",
+    measurementId: "G-KK5GCBWLLB"
+};
 
-const express = require('express');
-const path = require('path');
-const admin = require('firebase-admin');
-const bodyParser = require('body-parser');
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-// Initialize Firebase Admin SDK
-admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-    databaseURL: "https://your-project-id.firebaseio.com"  // Replace with your Firebase database URL
-});
+// Show password form for admin access
+function showPasswordForm() {
+    document.getElementById("passwordForm").style.display = "block";
+}
 
-const db = admin.firestore();
+// Check password and load messages for admin
+function checkPassword() {
+    const password = document.getElementById("password").value;
 
-// Create an Express app
-const app = express();
-const port = 3000;
-
-// Middleware for parsing application/json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Serve static files (HTML, CSS, JS, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Route to get messages from Firestore (admin access only)
-app.get('/api/messages', async (req, res) => {
-    try {
-        const messagesSnapshot = await db.collection('messages').get();
-        const messages = [];
-        messagesSnapshot.forEach(doc => {
-            messages.push(doc.data());
-        });
-        res.json(messages);
-    } catch (error) {
-        res.status(500).send('Error fetching messages: ' + error.message);
+    if (password === "846972") {
+        document.getElementById("messagesSection").style.display = "block";
+        fetchMessages(); // Fetch messages after correct password
+    } else {
+        alert("Incorrect password");
     }
-});
+}
 
-// Route to handle form submissions (contact form)
-app.post('/api/messages', async (req, res) => {
-    const { name, email, message } = req.body;
+// Fetch messages from Firestore and display them
+async function fetchMessages() {
+    const messagesContainer = document.getElementById("messagesContainer");
+    messagesContainer.innerHTML = ""; // Clear current messages
+
     try {
-        await db.collection('messages').add({
-            name,
-            email,
-            message,
-            timestamp: admin.firestore.FieldValue.serverTimestamp()
+        const querySnapshot = await db.collection("messages").get();
+        querySnapshot.forEach(doc => {
+            const messageData = doc.data();
+            const messageElement = document.createElement("div");
+            messageElement.innerHTML = `
+                <p><strong>${messageData.name}</strong>: ${messageData.message}</p>
+                <button class="delete-btn" onclick="deleteMessage('${doc.id}')">Delete</button>
+            `;
+            messagesContainer.appendChild(messageElement);
         });
-        res.status(200).send('Message sent successfully!');
     } catch (error) {
-        res.status(500).send('Error saving message: ' + error.message);
+        console.error("Error fetching messages:", error);
     }
-});
+}
 
-// Route for the home page (optional, but good practice)
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+// Delete a message from Firestore
+async function deleteMessage(messageId) {
+    try {
+        await db.collection("messages").doc(messageId).delete();
+        fetchMessages(); // Reload messages after deletion
+    } catch (error) {
+        console.error("Error deleting message:", error);
+    }
+}
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+// Handle form submission to store messages in Firestore
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    try {
+        // Save message to Firestore
+        await db.collection("messages").add({
+            name: name,
+            email: email,
+            message: message,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() // Add a timestamp
+        });
+
+        // Clear form and alert the user
+        document.getElementById("contactForm").reset();
+        alert("Message sent successfully!");
+
+        // Optionally, refresh the admin messages section if they are viewing it
+        if (document.getElementById("messagesSection").style.display === "block") {
+            fetchMessages();
+        }
+    } catch (error) {
+        console.error("Error sending message:", error);
+        alert("Error sending message. Please try again.");
+    }
 });
