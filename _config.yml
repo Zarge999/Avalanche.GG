@@ -11,13 +11,21 @@ social_links:
 
 # Navigation settings for the menu
 navigation:
-  - home: "/#home"
-  - about: "/#about"
-  - roster: "/#roster"
-  - events: "/#events"
-  - join: "/#join"
-  - contact: "/#contact"
-  - admin: "/#admin"
+ - title: "Home"
+    url: "/#home"
+  - title: "About Us"
+    url: "/#about"
+  - title: "Our Roster"
+    url: "/#roster"
+  - title: "Upcoming Events"
+    url: "/#events"
+  - title: "Join Us"
+    url: "/#join"
+  - title: "Contact"
+    url: "/#contact"
+  - title: "Admin Only"
+    url: "/#admin"
+
 
 # Google Analytics (optional - if you are tracking visitors)
 google_analytics: "UA-XXXXXXXXX-X"
